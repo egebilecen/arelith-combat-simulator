@@ -1,0 +1,707 @@
+use super::{DamageType, WeaponBase};
+use crate::simulator::{dice::Dice, size::SizeCategory};
+use std::collections::HashMap;
+
+pub fn get_weapon_base_list() -> HashMap<String, WeaponBase> {
+    HashMap::from([
+        //--AUTO-GENERATION-START
+        (
+            "Throwing Dagger".into(),
+            WeaponBase::new(
+                "Throwing Dagger".into(),
+                SizeCategory::Small,
+                Dice::from("1d4"),
+                20,
+                2,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Throwing Axe".into(),
+            WeaponBase::new(
+                "Throwing Axe".into(),
+                SizeCategory::Small,
+                Dice::from("1d8"),
+                20,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Shuriken".into(),
+            WeaponBase::new(
+                "Shuriken".into(),
+                SizeCategory::Tiny,
+                Dice::from("1d3"),
+                20,
+                2,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Dart".into(),
+            WeaponBase::new(
+                "Dart".into(),
+                SizeCategory::Tiny,
+                Dice::from("1d4"),
+                20,
+                2,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Sling".into(),
+            WeaponBase::new(
+                "Sling".into(),
+                SizeCategory::Tiny,
+                Dice::from("1d4"),
+                20,
+                2,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Longbow".into(),
+            WeaponBase::new(
+                "Longbow".into(),
+                SizeCategory::Large,
+                Dice::from("1d8"),
+                20,
+                3,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Shortbow".into(),
+            WeaponBase::new(
+                "Shortbow".into(),
+                SizeCategory::Medium,
+                Dice::from("1d6"),
+                20,
+                3,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Heavy Crossbow".into(),
+            WeaponBase::new(
+                "Heavy Crossbow".into(),
+                SizeCategory::Medium,
+                Dice::from("1d10"),
+                19,
+                2,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Light Crossbow".into(),
+            WeaponBase::new(
+                "Light Crossbow".into(),
+                SizeCategory::Small,
+                Dice::from("1d8"),
+                19,
+                2,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Naginata".into(),
+            WeaponBase::new(
+                "Naginata".into(),
+                SizeCategory::Large,
+                Dice::from("1d10"),
+                20,
+                3,
+                vec![DamageType::Bludgeoning, DamageType::Piercing],
+            ),
+        ),
+        (
+            "Pike".into(),
+            WeaponBase::new(
+                "Pike".into(),
+                SizeCategory::Large,
+                Dice::from("1d8"),
+                20,
+                3,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Trident".into(),
+            WeaponBase::new(
+                "Trident".into(),
+                SizeCategory::Large,
+                Dice::from("1d10"),
+                20,
+                3,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Small Lance".into(),
+            WeaponBase::new(
+                "Small Lance".into(),
+                SizeCategory::Small,
+                Dice::from("1d6"),
+                20,
+                3,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Lance".into(),
+            WeaponBase::new(
+                "Lance".into(),
+                SizeCategory::Medium,
+                Dice::from("1d8"),
+                20,
+                3,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Spear".into(),
+            WeaponBase::new(
+                "Spear".into(),
+                SizeCategory::Small,
+                Dice::from("1d6"),
+                20,
+                3,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Scythe".into(),
+            WeaponBase::new(
+                "Scythe".into(),
+                SizeCategory::Large,
+                Dice::from("2d4"),
+                20,
+                3,
+                vec![DamageType::Slashing, DamageType::Piercing],
+            ),
+        ),
+        (
+            "Halberd".into(),
+            WeaponBase::new(
+                "Halberd".into(),
+                SizeCategory::Large,
+                Dice::from("1d12"),
+                20,
+                3,
+                vec![DamageType::Slashing, DamageType::Piercing],
+            ),
+        ),
+        (
+            "Two-Bladed Sword".into(),
+            WeaponBase::new(
+                "Two-Bladed Sword".into(),
+                SizeCategory::Large,
+                Dice::from("1d6"),
+                18,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Quarterstaff".into(),
+            WeaponBase::new(
+                "Quarterstaff".into(),
+                SizeCategory::Large,
+                Dice::from("1d6"),
+                19,
+                2,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Double Axe".into(),
+            WeaponBase::new(
+                "Double Axe".into(),
+                SizeCategory::Large,
+                Dice::from("3d4"),
+                20,
+                3,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Dire Mace".into(),
+            WeaponBase::new(
+                "Dire Mace".into(),
+                SizeCategory::Large,
+                Dice::from("1d12"),
+                20,
+                3,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Colossal Sword".into(),
+            WeaponBase::new(
+                "Colossal Sword".into(),
+                SizeCategory::Huge,
+                Dice::from("2d8"),
+                19,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Colossal Hammer".into(),
+            WeaponBase::new(
+                "Colossal Hammer".into(),
+                SizeCategory::Huge,
+                Dice::from("2d8"),
+                20,
+                3,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Colossal Axe".into(),
+            WeaponBase::new(
+                "Colossal Axe".into(),
+                SizeCategory::Huge,
+                Dice::from("2d8"),
+                20,
+                3,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Great Club".into(),
+            WeaponBase::new(
+                "Great Club".into(),
+                SizeCategory::Large,
+                Dice::from("1d10"),
+                20,
+                2,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Maul".into(),
+            WeaponBase::new(
+                "Maul".into(),
+                SizeCategory::Large,
+                Dice::from("2d6"),
+                20,
+                3,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Heavy Flail".into(),
+            WeaponBase::new(
+                "Heavy Flail".into(),
+                SizeCategory::Large,
+                Dice::from("1d12"),
+                19,
+                2,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Falchion".into(),
+            WeaponBase::new(
+                "Falchion".into(),
+                SizeCategory::Large,
+                Dice::from("2d4"),
+                18,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Greataxe".into(),
+            WeaponBase::new(
+                "Greataxe".into(),
+                SizeCategory::Large,
+                Dice::from("3d4"),
+                20,
+                3,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Greatsword".into(),
+            WeaponBase::new(
+                "Greatsword".into(),
+                SizeCategory::Large,
+                Dice::from("2d6"),
+                19,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Nodachi".into(),
+            WeaponBase::new(
+                "Nodachi".into(),
+                SizeCategory::Large,
+                Dice::from("3d4"),
+                19,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Bastard Sword".into(),
+            WeaponBase::new(
+                "Bastard Sword".into(),
+                SizeCategory::Medium,
+                Dice::from("1d10"),
+                19,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Katana".into(),
+            WeaponBase::new(
+                "Katana".into(),
+                SizeCategory::Medium,
+                Dice::from("1d10"),
+                19,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Katar".into(),
+            WeaponBase::new(
+                "Katar".into(),
+                SizeCategory::Tiny,
+                Dice::from("2d2"),
+                19,
+                2,
+                vec![DamageType::Slashing, DamageType::Piercing],
+            ),
+        ),
+        (
+            "Wakizashi".into(),
+            WeaponBase::new(
+                "Wakizashi".into(),
+                SizeCategory::Small,
+                Dice::from("1d8"),
+                19,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Sai".into(),
+            WeaponBase::new(
+                "Sai".into(),
+                SizeCategory::Tiny,
+                Dice::from("1d4"),
+                19,
+                2,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Dwarven Waraxe".into(),
+            WeaponBase::new(
+                "Dwarven Waraxe".into(),
+                SizeCategory::Medium,
+                Dice::from("1d10"),
+                20,
+                3,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Sickle".into(),
+            WeaponBase::new(
+                "Sickle".into(),
+                SizeCategory::Small,
+                Dice::from("1d6"),
+                20,
+                3,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Scimitar".into(),
+            WeaponBase::new(
+                "Scimitar".into(),
+                SizeCategory::Medium,
+                Dice::from("1d6"),
+                18,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Rapier".into(),
+            WeaponBase::new(
+                "Rapier".into(),
+                SizeCategory::Medium,
+                Dice::from("1d6"),
+                18,
+                2,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Kukri".into(),
+            WeaponBase::new(
+                "Kukri".into(),
+                SizeCategory::Tiny,
+                Dice::from("1d4"),
+                18,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Kama".into(),
+            WeaponBase::new(
+                "Kama".into(),
+                SizeCategory::Tiny,
+                Dice::from("1d6"),
+                19,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Handaxe".into(),
+            WeaponBase::new(
+                "Handaxe".into(),
+                SizeCategory::Small,
+                Dice::from("1d6"),
+                20,
+                3,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Dagger".into(),
+            WeaponBase::new(
+                "Dagger".into(),
+                SizeCategory::Tiny,
+                Dice::from("1d4"),
+                19,
+                2,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Battleaxe".into(),
+            WeaponBase::new(
+                "Battleaxe".into(),
+                SizeCategory::Medium,
+                Dice::from("1d8"),
+                20,
+                3,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Longsword".into(),
+            WeaponBase::new(
+                "Longsword".into(),
+                SizeCategory::Medium,
+                Dice::from("1d8"),
+                19,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Short Sword".into(),
+            WeaponBase::new(
+                "Short Sword".into(),
+                SizeCategory::Small,
+                Dice::from("1d6"),
+                19,
+                2,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Heavy Pick".into(),
+            WeaponBase::new(
+                "Heavy Pick".into(),
+                SizeCategory::Medium,
+                Dice::from("1d8"),
+                20,
+                3,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Light Pick".into(),
+            WeaponBase::new(
+                "Light Pick".into(),
+                SizeCategory::Tiny,
+                Dice::from("1d6"),
+                20,
+                3,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Cavalry Sword".into(),
+            WeaponBase::new(
+                "Cavalry Sword".into(),
+                SizeCategory::Medium,
+                Dice::from("2d3"),
+                18,
+                2,
+                vec![DamageType::Slashing, DamageType::Piercing],
+            ),
+        ),
+        (
+            "Cavalry Axe".into(),
+            WeaponBase::new(
+                "Cavalry Axe".into(),
+                SizeCategory::Medium,
+                Dice::from("2d4"),
+                20,
+                3,
+                vec![DamageType::Slashing, DamageType::Piercing],
+            ),
+        ),
+        (
+            "Whip".into(),
+            WeaponBase::new(
+                "Whip".into(),
+                SizeCategory::Small,
+                Dice::from("1d2"),
+                20,
+                2,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Macuahuitl".into(),
+            WeaponBase::new(
+                "Macuahuitl".into(),
+                SizeCategory::Medium,
+                Dice::from("2d4"),
+                20,
+                3,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
+            "Dire Macuahuitl".into(),
+            WeaponBase::new(
+                "Dire Macuahuitl".into(),
+                SizeCategory::Large,
+                Dice::from("2d6"),
+                20,
+                3,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Magic Staff".into(),
+            WeaponBase::new(
+                "Magic Staff".into(),
+                SizeCategory::Small,
+                Dice::from("1d6"),
+                20,
+                2,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Morningstar".into(),
+            WeaponBase::new(
+                "Morningstar".into(),
+                SizeCategory::Medium,
+                Dice::from("1d6"),
+                20,
+                3,
+                vec![DamageType::Bludgeoning, DamageType::Piercing],
+            ),
+        ),
+        (
+            "Light Hammer".into(),
+            WeaponBase::new(
+                "Light Hammer".into(),
+                SizeCategory::Tiny,
+                Dice::from("1d6"),
+                20,
+                3,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Club".into(),
+            WeaponBase::new(
+                "Club".into(),
+                SizeCategory::Medium,
+                Dice::from("1d6"),
+                20,
+                2,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "War Mace".into(),
+            WeaponBase::new(
+                "War Mace".into(),
+                SizeCategory::Medium,
+                Dice::from("1d10"),
+                20,
+                3,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Light Mace".into(),
+            WeaponBase::new(
+                "Light Mace".into(),
+                SizeCategory::Tiny,
+                Dice::from("1d6"),
+                20,
+                3,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Warhammer".into(),
+            WeaponBase::new(
+                "Warhammer".into(),
+                SizeCategory::Medium,
+                Dice::from("1d8"),
+                20,
+                3,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Light Flail".into(),
+            WeaponBase::new(
+                "Light Flail".into(),
+                SizeCategory::Small,
+                Dice::from("1d6"),
+                19,
+                2,
+                vec![DamageType::Bludgeoning],
+            ),
+        ),
+        (
+            "Cavalry Hammer".into(),
+            WeaponBase::new(
+                "Cavalry Hammer".into(),
+                SizeCategory::Medium,
+                Dice::from("2d4"),
+                20,
+                3,
+                vec![DamageType::Bludgeoning, DamageType::Piercing],
+            ),
+        ),
+        //--AUTO-GENERATION-END
+    ])
+}
+
+pub fn get_weapon_base(base: &str) -> Option<WeaponBase> {
+    get_weapon_base_list().get(base).cloned()
+}

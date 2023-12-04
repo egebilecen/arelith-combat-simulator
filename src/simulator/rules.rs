@@ -1,0 +1,1 @@
+pub static CONSECUTIVE_ATTACK_AB_PENALTY: i32 = 5;
