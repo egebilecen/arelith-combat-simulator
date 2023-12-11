@@ -1,22 +1,22 @@
 use super::Feat;
 use std::collections::HashMap;
 
-// Not used at the moment for anything. 
+// Not used at the moment for anything.
 // I left it as a reference of which feats are implemented.
-pub fn get_feat_list() -> HashMap<String, Feat> {
+pub fn get_feat_list() -> HashMap<&'static str, Feat> {
     HashMap::from([
-        ("Critical Immunity".into(), Feat("Critical Immunity".into())),
+        ("Critical Immunity", Feat("Critical Immunity".into())),
         (
-            "Overwhelming Critical".into(),
+            "Overwhelming Critical",
             Feat("Overwhelming Critical".into()),
         ),
-        ("Blind Fight".into(), Feat("Blind Fight".into())),
-        ("Bane of Enemies".into(), Feat("Bane of Enemies".into())),
-        ("Dual Wielding".into(), Feat("Dual Wielding".into())),
-        ("Epic Dodge".into(), Feat("Epic Dodge".into())),
-        ("Increased Multiplier".into(), Feat("Increased Multiplier".into())),
-        ("Improved Critical".into(), Feat("Improved Critical".into())),
-        ("Ki Critical".into(), Feat("Ki Critical".into())),
+        ("Blind Fight", Feat("Blind Fight".into())),
+        ("Bane of Enemies", Feat("Bane of Enemies".into())),
+        ("Dual Wielding", Feat("Dual Wielding".into())),
+        ("Epic Dodge", Feat("Epic Dodge".into())),
+        ("Increased Multiplier", Feat("Increased Multiplier".into())),
+        ("Improved Critical", Feat("Improved Critical".into())),
+        ("Ki Critical", Feat("Ki Critical".into())),
     ])
 }
 

@@ -1,6 +1,6 @@
 use super::{
     combat::{AttackInfo, AttackType},
-    feat::Feat,
+    feat::{feat_db::get_feat, Feat},
     item::{get_keen_increase, DamageType, Weapon},
     rules::CONSECUTIVE_ATTACK_AB_PENALTY,
     size::SizeCategory,
@@ -126,23 +126,23 @@ impl Character {
     }
 
     pub fn has_blind_fight(&self) -> bool {
-        self.has_feat(Feat("Blind Fight".into()))
+        self.has_feat(get_feat("Blind Fight"))
     }
 
     pub fn has_epic_dodge(&self) -> bool {
-        self.has_feat(Feat("Epic Dodge".into()))
+        self.has_feat(get_feat("Epic Dodge"))
     }
 
     pub fn has_bane_of_enemies(&self) -> bool {
-        self.has_feat(Feat("Bane of Enemies".into()))
+        self.has_feat(get_feat("Bane of Enemies"))
     }
 
     pub fn is_dual_wielding(&self) -> bool {
-        self.has_feat(Feat("Dual Wielding".into()))
+        self.has_feat(get_feat("Dual Wielding"))
     }
 
     pub fn is_crit_immune(&self) -> bool {
-        self.has_feat(Feat("Critical Immunity".into()))
+        self.has_feat(get_feat("Critical Immunity"))
     }
 
     pub fn atk_ab(&self, atk_no: i32) -> Option<AttackInfo> {
@@ -179,7 +179,7 @@ impl Character {
 
     pub fn weapon_crit_multiplier(&self) -> i32 {
         self.weapon.base.crit_multiplier
-            + if self.has_feat(Feat("Increased Multiplier".into())) {
+            + if self.has_feat(get_feat("Increased Multiplier")) {
                 1
             } else {
                 0
@@ -188,12 +188,12 @@ impl Character {
 
     pub fn weapon_threat_range(&self) -> i32 {
         self.weapon.threat_range()
-            - if self.has_feat(Feat("Improved Critical".into())) {
+            - if self.has_feat(get_feat("Improved Critical")) {
                 get_keen_increase(self.weapon.base.threat_range)
             } else {
                 0
             }
-            - if self.has_feat(Feat("Ki Critical".into())) {
+            - if self.has_feat(get_feat("Ki Critical")) {
                 2
             } else {
                 0
@@ -263,7 +263,7 @@ impl CharacterBuilder {
             .defensive_essence(5);
 
         if has_epic_dodge {
-            builder = builder.add_feat(Feat("Epic Dodge".into()));
+            builder = builder.add_feat(get_feat("Epic Dodge"));
         }
 
         builder
@@ -355,7 +355,7 @@ mod test {
     use crate::simulator::{
         character::{AbilityList, Character, CharacterBuilder},
         dice::Dice,
-        feat::Feat,
+        feat::feat_db::get_feat,
         item::{weapon_db::get_weapon_base, DamageType, ItemProperty, Weapon, WeaponBase},
         size::SizeCategory,
     };
@@ -386,7 +386,7 @@ mod test {
                 get_weapon_base("Rapier".into()),
                 vec![ItemProperty::Keen],
             ))
-            .feats(vec![Feat("Blind Fight".into())])
+            .feats(vec![get_feat("Blind Fight")])
             .build();
 
         assert_eq!(character.abilities.str.get_mod(), 14);
@@ -414,7 +414,7 @@ mod test {
                 ),
                 vec![ItemProperty::Keen],
             ))
-            .feats(vec![Feat("Improved Critical".into())])
+            .feats(vec![get_feat("Improved Critical")])
             .build();
         assert_eq!(character.weapon_threat_range(), 12);
 
@@ -432,7 +432,7 @@ mod test {
                 ),
                 vec![ItemProperty::Keen],
             ))
-            .feats(vec![Feat("Improved Critical".into())])
+            .feats(vec![get_feat("Improved Critical")])
             .build();
         assert_eq!(character.weapon_threat_range(), 15);
 
@@ -450,7 +450,7 @@ mod test {
                 ),
                 vec![ItemProperty::Keen],
             ))
-            .feats(vec![Feat("Improved Critical".into())])
+            .feats(vec![get_feat("Improved Critical")])
             .build();
         assert_eq!(character.weapon_threat_range(), 18);
 
@@ -468,10 +468,7 @@ mod test {
                 ),
                 vec![ItemProperty::Keen],
             ))
-            .feats(vec![
-                Feat("Improved Critical".into()),
-                Feat("Ki Critical".into()),
-            ])
+            .feats(vec![get_feat("Improved Critical"), get_feat("Ki Critical")])
             .build();
         assert_eq!(character.weapon_threat_range(), 10);
 
@@ -489,10 +486,7 @@ mod test {
                 ),
                 vec![ItemProperty::Keen],
             ))
-            .feats(vec![
-                Feat("Improved Critical".into()),
-                Feat("Ki Critical".into()),
-            ])
+            .feats(vec![get_feat("Improved Critical"), get_feat("Ki Critical")])
             .build();
         assert_eq!(character.weapon_threat_range(), 13);
 
@@ -510,10 +504,7 @@ mod test {
                 ),
                 vec![ItemProperty::Keen],
             ))
-            .feats(vec![
-                Feat("Improved Critical".into()),
-                Feat("Ki Critical".into()),
-            ])
+            .feats(vec![get_feat("Improved Critical"), get_feat("Ki Critical")])
             .build();
         assert_eq!(character.weapon_threat_range(), 16);
 
@@ -526,9 +517,9 @@ mod test {
             .base_apr(4)
             .extra_apr(2)
             .feats(vec![
-                Feat("Dual Wielding".into()),
-                Feat("Critical Immunity".into()),
-                Feat("Increased Multiplier".into()),
+                get_feat("Dual Wielding"),
+                get_feat("Critical Immunity"),
+                get_feat("Increased Multiplier"),
             ])
             .build();
 

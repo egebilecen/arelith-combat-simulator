@@ -275,8 +275,8 @@ mod test {
         character::{AbilityList, Character, CharacterBuilder},
         combat::{AttackInfo, AttackType, Combat},
         dice::Dice,
-        feat::Feat,
-        item::{Damage, DamageType, ItemProperty, Weapon, WeaponBase, DamageResult},
+        feat::feat_db::get_feat,
+        item::{Damage, DamageResult, DamageType, ItemProperty, Weapon, WeaponBase},
         size::SizeCategory,
     };
 
@@ -313,7 +313,7 @@ mod test {
 
         let character2 = CharacterBuilder::from(character)
             .ab(48)
-            .feats(vec![Feat("Dual Wielding".into())])
+            .feats(vec![get_feat("Dual Wielding")])
             .build();
 
         assert_eq!(
@@ -348,7 +348,7 @@ mod test {
 
         let attacker = Character::builder()
             .ab(50)
-            .feats(vec![Feat("Blind Fight".into())])
+            .feats(vec![get_feat("Blind Fight")])
             .build();
 
         let defender = Character::builder().concealment(50).build();
@@ -387,7 +387,7 @@ mod test {
                     ItemProperty::MassiveCrit(Dice::from(6)),
                 ],
             ))
-            .feats(vec![Feat("Increased Multiplier".into())])
+            .feats(vec![get_feat("Increased Multiplier")])
             .build();
 
         let defender = Character::builder()
@@ -442,7 +442,7 @@ mod test {
                     ItemProperty::MassiveCrit(Dice::from(6)),
                 ],
             ))
-            .feats(vec![Feat("Increased Multiplier".into())])
+            .feats(vec![get_feat("Increased Multiplier")])
             .build();
 
         let defender = Character::builder()

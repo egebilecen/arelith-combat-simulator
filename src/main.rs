@@ -1,12 +1,10 @@
+use crate::simulator::{character::Character, feat::feat_db::get_feat};
 use simulator::{
     character::AbilityList,
     dice::Dice,
-    feat::Feat,
     item::{weapon_db::get_weapon_base, Damage, DamageType, ItemProperty, Weapon},
     simulator::CombatSimulator,
 };
-
-use crate::simulator::character::Character;
 
 mod simulator;
 
@@ -18,10 +16,10 @@ fn main() {
         .extra_apr(1)
         .abilities(AbilityList::builder().str(42).build())
         .feats(vec![
-            Feat("Blind Fight".into()),
-            Feat("Dual Wielding".into()),
-            Feat("Improved Critical".into()),
-            Feat("Increased Multiplier".into()),
+            get_feat("Blind Fight"),
+            get_feat("Dual Wielding"),
+            get_feat("Improved Critical"),
+            get_feat("Increased Multiplier"),
         ])
         .weapon(Weapon::new(
             "M. Damask Scimitar".into(),
@@ -62,7 +60,7 @@ fn main() {
         ))
         .build();
 
-    let simulator = CombatSimulator::new(500_000);
+    let simulator = CombatSimulator::new(10);
     let result = simulator.damage_test(&attacker, vec![35, 40, 45, 50, 55, 60, 65]);
     println!("{:#?}", result);
 }
