@@ -72,16 +72,20 @@ impl AttackInfo {
 #[derive(Default, Debug)]
 pub struct CombatStatistics {
     pub total_hits: i64,
+    pub critical_hits: i64,
     pub total_misses: i64,
     pub concealed_attacks: i64,
     pub epic_dodged_attacks: i64,
-    pub critical_hits: i64,
     pub dmg_dealt: DamageResult,
 }
 
 impl CombatStatistics {
     pub fn new() -> Self {
         Self::default()
+    }
+
+    pub fn total_attacks(&self) -> i64 {
+        self.total_hits + self.total_misses
     }
 }
 
