@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use super::{
     character::{Character, CharacterBuilder},
-    combat::{Combat, CombatStatistics},
+    combat::{Combat, CombatStatistics}, feat::feat_db::get_feat,
 };
 
 #[derive(Default)]
@@ -33,11 +33,17 @@ impl CombatSimulator {
         statistics
     }
 
-    pub fn damage_test(&self, attacker: &Character, target_ac_list: Vec<i32>) -> HashMap<i32, CombatStatistics> {
+    pub fn damage_test(&self, attacker: &Character, target_ac_list: Vec<i32>, target_has_epic_dodge: bool) -> HashMap<i32, CombatStatistics> {
         let mut statistics = HashMap::new();
 
         for target_ac in target_ac_list {
-            let dummy = CharacterBuilder::standard_dummy(target_ac, false).build();
+            let mut dummy = CharacterBuilder::standard_dummy(target_ac);
+
+            if target_has_epic_dodge {
+                dummy = dummy.add_feat(get_feat("Epic Dodge"));
+            }
+
+            let dummy = dummy.build();
             let round_statistics = self.begin(attacker, &dummy);
 
             statistics.insert(target_ac, round_statistics);

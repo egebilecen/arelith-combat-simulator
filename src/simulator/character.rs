@@ -254,19 +254,13 @@ impl CharacterBuilder {
         }
     }
 
-    pub fn standard_dummy(ac: i32, has_epic_dodge: bool) -> Self {
-        let mut builder = Self::new()
+    pub fn standard_dummy(ac: i32) -> Self {
+        Self::new()
             .name("Standard Dummy".into())
             .ac(ac)
             .concealment(50)
             .physical_immunity(10)
-            .defensive_essence(5);
-
-        if has_epic_dodge {
-            builder = builder.add_feat(get_feat("Epic Dodge"));
-        }
-
-        builder
+            .defensive_essence(5)
     }
 
     pub fn name(mut self, name: String) -> Self {
