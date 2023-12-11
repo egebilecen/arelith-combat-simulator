@@ -71,14 +71,14 @@ mod test {
 
     #[test]
     fn weapon_base() {
-        let weapon_base = get_weapon_base("Rapier").unwrap();
+        let weapon_base = get_weapon_base("Rapier");
         assert_eq!(weapon_base.name, "Rapier");
         assert_eq!(weapon_base.threat_range, 18);
         assert_eq!(weapon_base.crit_multiplier, 2);
         assert_eq!(weapon_base.damage.to_string(), "1d6");
         assert_eq!(weapon_base.damage_type[0], DamageType::Piercing);
 
-        let weapon_base = get_weapon_base("Double Axe").unwrap();
+        let weapon_base = get_weapon_base("Double Axe");
         assert_eq!(weapon_base.name, "Double Axe");
         assert_eq!(weapon_base.threat_range, 20);
         assert_eq!(weapon_base.crit_multiplier, 3);
@@ -88,7 +88,7 @@ mod test {
 
     #[test]
     fn weapon() {
-        let weapon = Weapon::new("".into(), get_weapon_base("Rapier").unwrap(), vec![]);
+        let weapon = Weapon::new("".into(), get_weapon_base("Rapier"), vec![]);
         assert_eq!(weapon.is_keen(), false);
         assert_eq!(weapon.threat_range(), 18);
 

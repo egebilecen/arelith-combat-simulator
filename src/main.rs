@@ -25,7 +25,7 @@ fn main() {
         ])
         .weapon(Weapon::new(
             "M. Damask Scimitar".into(),
-            get_weapon_base("Scimitar").unwrap(),
+            get_weapon_base("Scimitar"),
             vec![
                 ItemProperty::Keen,
                 ItemProperty::DamageBonus(Damage::new(

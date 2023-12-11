@@ -20,6 +20,6 @@ pub fn get_feat_list() -> HashMap<String, Feat> {
     ])
 }
 
-pub fn get_feat(name: &str) -> Option<Feat> {
-    get_feat_list().get(name).cloned()
+pub fn get_feat(name: &str) -> Feat {
+    get_feat_list().get(name).unwrap().to_owned()
 }

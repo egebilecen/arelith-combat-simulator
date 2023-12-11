@@ -383,7 +383,7 @@ mod test {
             .physical_damage_reduction(0)
             .weapon(Weapon::new(
                 "".into(),
-                get_weapon_base("Rapier".into()).unwrap(),
+                get_weapon_base("Rapier".into()),
                 vec![ItemProperty::Keen],
             ))
             .feats(vec![Feat("Blind Fight".into())])
@@ -520,7 +520,7 @@ mod test {
         let character: Character = Character::builder()
             .weapon(Weapon::new(
                 "".into(),
-                get_weapon_base("Greatsword").unwrap(),
+                get_weapon_base("Greatsword"),
                 vec![],
             ))
             .base_apr(4)

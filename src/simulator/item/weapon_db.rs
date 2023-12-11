@@ -702,6 +702,6 @@ pub fn get_weapon_base_list() -> HashMap<String, WeaponBase> {
     ])
 }
 
-pub fn get_weapon_base(base: &str) -> Option<WeaponBase> {
-    get_weapon_base_list().get(base).cloned()
+pub fn get_weapon_base(base: &str) -> WeaponBase {
+    get_weapon_base_list().get(base).unwrap().to_owned()
 }
