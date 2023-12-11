@@ -1,8 +1,8 @@
 #[derive(PartialEq, Debug, Clone)]
-pub struct Feat(pub String);
+pub struct Feat(pub &'static str);
 
 impl Feat {
-    fn name(&self) -> &String {
+    fn name(&self) -> &str {
         &self.0
     }
 }
