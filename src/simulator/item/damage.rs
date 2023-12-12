@@ -1,7 +1,7 @@
 use crate::simulator::dice::Dice;
 use std::{cell::RefCell, collections::HashMap};
 
-#[derive(Clone, Copy, Eq, PartialEq, Debug, Hash)]
+#[derive(Clone, Copy, Eq, PartialEq, Debug, Hash, Ord, PartialOrd)]
 pub enum DamageType {
     Slashing,
     Piercing,
@@ -96,7 +96,7 @@ impl DamageResult {
     pub fn get_types_sorted(&self) -> Vec<DamageType> {
         let mut types = self.get_types();
         types.sort();
-
+        
         types
     }
 

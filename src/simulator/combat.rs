@@ -1,3 +1,4 @@
+use crate::simulator::string::align_string;
 use super::{
     character::Character,
     dice::Dice,
@@ -86,6 +87,46 @@ impl CombatStatistics {
 
     pub fn total_attacks(&self) -> i64 {
         self.total_hits + self.total_misses
+    }
+}
+
+impl ToString for CombatStatistics {
+    fn to_string(&self) -> String {
+        let mut string_list: Vec<String> = vec![];
+
+        string_list.push(align_string(
+            "TOTAL ATTACK",
+            self.total_attacks().to_string(),
+        ));
+        string_list.push(align_string("TOTAL HIT", self.total_hits.to_string()));
+        string_list.push(align_string(
+            "    * CRITICAL HIT",
+            self.critical_hits.to_string(),
+        ));
+        string_list.push("".into());
+        string_list.push(align_string("TOTAL MISS", self.total_misses.to_string()));
+        string_list.push(align_string(
+            "    * CONCEALED",
+            self.concealed_attacks.to_string(),
+        ));
+        string_list.push(align_string(
+            "    * EPIC DODGED",
+            self.epic_dodged_attacks.to_string(),
+        ));
+        string_list.push("".into());
+        string_list.push(align_string(
+            "TOTAL DAMAGE",
+            self.dmg_dealt.total_dmg().to_string(),
+        ));
+
+        for type_ in self.dmg_dealt.get_types_sorted() {
+            string_list.push(align_string(
+                format!("    * {}", type_.to_string().to_uppercase()).as_str(),
+                self.dmg_dealt.get(type_).to_string(),
+            ));
+        }
+
+        string_list.join("\n")
     }
 }
 

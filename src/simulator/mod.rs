@@ -6,3 +6,4 @@ pub mod item;
 mod rules;
 pub mod simulator;
 pub mod size;
+mod string;

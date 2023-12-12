@@ -62,5 +62,5 @@ fn main() {
 
     let simulator = CombatSimulator::new(10);
     let result = simulator.damage_test(&attacker, vec![35, 40, 45, 50, 55, 60, 65], false);
-    println!("{:#?}", result);
+    println!("{}", result.to_string());
 }
