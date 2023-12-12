@@ -38,8 +38,10 @@ impl Dice {
 
         res
     }
+}
 
-    pub fn to_string(&self) -> String {
+impl ToString for Dice {
+    fn to_string(&self) -> String {
         format!("{}d{}", self.rolls, self.faces)
     }
 }
@@ -74,12 +76,6 @@ impl From<&str> for Dice {
 impl From<String> for Dice {
     fn from(dice: String) -> Self {
         Dice::from(dice.as_str())
-    }
-}
-
-impl std::fmt::Display for Dice {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.to_string())
     }
 }
 

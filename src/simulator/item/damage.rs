@@ -50,7 +50,7 @@ pub struct Damage {
 
 impl std::fmt::Display for Damage {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.amount)
+        write!(f, "{}", self.amount.to_string())
     }
 }
 
@@ -91,6 +91,13 @@ impl DamageResult {
 
     pub fn get_types(&self) -> Vec<DamageType> {
         self.0.borrow().keys().cloned().collect::<Vec<DamageType>>()
+    }
+
+    pub fn get_types_sorted(&self) -> Vec<DamageType> {
+        let mut types = self.get_types();
+        types.sort();
+
+        types
     }
 
     pub fn add(&self, type_: DamageType, amount: i32) -> i32 {
