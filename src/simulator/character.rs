@@ -179,7 +179,11 @@ impl Character {
     }
 
     pub fn weapon_crit_multiplier(&self) -> i32 {
-        self.weapon.base.crit_multiplier
+        if let Some(override_val) = self.weapon.crit_multiplier_override() {
+            return override_val;
+        }
+
+        self.weapon.crit_multiplier()
             + if self.has_feat(get_feat("Increased Multiplier")) {
                 1
             } else {
@@ -188,6 +192,10 @@ impl Character {
     }
 
     pub fn weapon_threat_range(&self) -> i32 {
+        if let Some(override_val) = self.weapon.threat_range_override() {
+            return override_val;
+        }
+
         self.weapon.threat_range()
             - if self.has_feat(get_feat("Improved Critical")) {
                 get_keen_increase(self.weapon.base.threat_range)

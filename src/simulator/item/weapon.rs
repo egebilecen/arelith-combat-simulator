@@ -59,11 +59,48 @@ impl Weapon {
                 0
             }
     }
+
+    pub fn crit_multiplier(&self) -> i32 {
+        self.base.crit_multiplier
+    }
+
+    pub fn crit_multiplier_override(&self) -> Option<i32> {
+        for override_val in self
+            .item_properties
+            .iter()
+            .map(|x| match x {
+                ItemProperty::CriticalMultiplierOverride(value) => *value,
+                _ => 0,
+            })
+            .filter(|x| *x > 0)
+        {
+            return Some(override_val);
+        }
+
+        None
+    }
+
+    pub fn threat_range_override(&self) -> Option<i32> {
+        for override_val in self
+            .item_properties
+            .iter()
+            .map(|x| match x {
+                ItemProperty::ThreatRangeOverride(value) => *value,
+                _ => 0,
+            })
+            .filter(|x| *x > 0)
+        {
+            return Some(override_val);
+        }
+
+        None
+    }
 }
 
 #[cfg(test)]
 mod test {
     use crate::simulator::{
+        character::Character,
         dice::Dice,
         item::{weapon_db::get_weapon_base, DamageType, ItemProperty, Weapon, WeaponBase},
         size::SizeCategory,
@@ -139,5 +176,28 @@ mod test {
         );
         assert_eq!(weapon.is_keen(), true);
         assert_eq!(weapon.threat_range(), 19);
+
+        // Threat range and critical multiplier override test
+        let weapon = Weapon::new(
+            "".into(),
+            WeaponBase::new(
+                "".into(),
+                SizeCategory::Medium,
+                Dice::from(0),
+                20,
+                2,
+                vec![DamageType::Slashing],
+            ),
+            vec![
+                ItemProperty::Keen,
+                ItemProperty::ThreatRangeOverride(99),
+                ItemProperty::CriticalMultiplierOverride(50),
+            ],
+        );
+
+        let character = Character::builder().weapon(weapon).build();
+
+        assert_eq!(character.weapon_threat_range(), 99);
+        assert_eq!(character.weapon_crit_multiplier(), 50);
     }
 }

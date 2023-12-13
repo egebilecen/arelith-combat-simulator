@@ -13,4 +13,6 @@ pub enum ItemProperty {
     MassiveCrit(Dice),
     DamageBonus(Damage),
     Keen,
+    ThreatRangeOverride(i32),
+    CriticalMultiplierOverride(i32),
 }
