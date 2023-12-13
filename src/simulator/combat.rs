@@ -160,8 +160,8 @@ impl<'a> Combat<'a> {
             attacker.weapon_crit_multiplier()
         };
 
-        // TODO: Get the damage type of weapon that defender has less immunity against
-        //       if weapon has multiple damage types.
+        // TODO: Get the damage type of weapon that defender has less immunity / reduction / resistance
+        //       against if weapon has multiple damage types.
         // TODO: Add unarmed support. Currently if there is no weapon provided to character,
         //       Rust panics because of unwrapping weapon damage type which is null.
         let weapon_base_dmg_type = *attacker.weapon.base.damage_type.first().unwrap();

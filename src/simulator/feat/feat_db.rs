@@ -15,8 +15,6 @@ const FEAT_LIST: &'static [&'static str] = &[
     "Epic Weapon Specialization",
 ];
 
-// Not used at the moment for anything.
-// I left it as a reference of which feats are implemented.
 pub fn get_feat_list() -> HashMap<&'static str, Feat> {
     let mut hashmap = HashMap::new();
 
