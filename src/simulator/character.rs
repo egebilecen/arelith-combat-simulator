@@ -138,6 +138,14 @@ impl Character {
         self.has_feat(get_feat("Bane of Enemies"))
     }
 
+    pub fn has_weapon_spec(&self) -> bool {
+        self.has_feat(get_feat("Weapon Specialization"))
+    }
+
+    pub fn has_epic_weapon_spec(&self) -> bool {
+        self.has_feat(get_feat("Epic Weapon Specialization"))
+    }
+
     pub fn is_dual_wielding(&self) -> bool {
         self.has_feat(get_feat("Dual Wielding"))
     }

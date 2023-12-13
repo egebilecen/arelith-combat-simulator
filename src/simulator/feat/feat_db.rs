@@ -10,7 +10,9 @@ const FEAT_LIST: &'static [&'static str] = &[
     "Epic Dodge",
     "Increased Multiplier",
     "Improved Critical",
-    "Ki Critical"
+    "Ki Critical",
+    "Weapon Specialization",
+    "Epic Weapon Specialization",
 ];
 
 // Not used at the moment for anything.

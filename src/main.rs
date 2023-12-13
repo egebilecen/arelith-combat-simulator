@@ -20,18 +20,14 @@ fn main() {
             get_feat("Dual Wielding"),
             get_feat("Improved Critical"),
             get_feat("Increased Multiplier"),
+            get_feat("Weapon Specialization"),
+            get_feat("Epic Weapon Specialization"),
         ])
         .weapon(Weapon::new(
             "M. Damask Scimitar".into(),
             get_weapon_base("Scimitar"),
             vec![
                 ItemProperty::Keen,
-                ItemProperty::DamageBonus(Damage::new(
-                    DamageType::Slashing,
-                    Dice::from(6),
-                    true,
-                    true,
-                )),
                 ItemProperty::DamageBonus(Damage::new(
                     DamageType::Slashing,
                     Dice::from(6),

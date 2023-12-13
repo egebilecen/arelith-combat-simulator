@@ -1,9 +1,9 @@
-use crate::simulator::string::align_string;
 use super::{
     character::Character,
     dice::Dice,
     item::{DamageResult, ItemProperty},
 };
+use crate::simulator::string::align_string;
 use std::cmp::max;
 
 #[derive(Debug, PartialEq)]
@@ -183,8 +183,6 @@ impl<'a> Combat<'a> {
 
         dmg_result.add(weapon_base_dmg_type, str_mod_bonus);
 
-        // TODO: Add weapon spec., epic weapon spec. feats and implement them in here.
-
         // Weapon base damage
         let weapon_base_dmg = attacker.weapon.base.damage.roll_m(multiplier);
         dmg_result.add(weapon_base_dmg_type, weapon_base_dmg);
@@ -223,6 +221,16 @@ impl<'a> Combat<'a> {
         // Bane of Enemies
         if attacker.has_bane_of_enemies() {
             dmg_result.add(weapon_base_dmg_type, Dice::from("2d6").roll_m(multiplier));
+        }
+
+        // Weapon Specialization
+        if attacker.has_weapon_spec() {
+            dmg_result.add(weapon_base_dmg_type, 2 * multiplier);
+        }
+
+        // Epic Weapon Specialization
+        if attacker.has_epic_weapon_spec() {
+            dmg_result.add(weapon_base_dmg_type, 4 * multiplier);
         }
 
         // Apply damage immunity and reduction
