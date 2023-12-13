@@ -6,6 +6,7 @@ pub fn get_keen_increase(threat_range: i32) -> i32 {
 }
 
 #[derive(PartialEq)]
+#[allow(unused)]
 pub enum ItemProperty {
     AttackBonus(i32),
     EnchantmentBonus(i32),

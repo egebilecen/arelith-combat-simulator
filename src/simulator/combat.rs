@@ -7,6 +7,7 @@ use super::{
 use std::cmp::max;
 
 #[derive(Debug, PartialEq)]
+#[allow(unused)]
 pub enum HitResult {
     Hit,
     CriticalHit,
@@ -15,12 +16,7 @@ pub enum HitResult {
     EpicDodged,
 }
 
-impl Default for HitResult {
-    fn default() -> Self {
-        Self::Miss
-    }
-}
-
+#[allow(unused)]
 impl HitResult {
     pub fn is_missed(&self) -> bool {
         match *self {

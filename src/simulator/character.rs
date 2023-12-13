@@ -49,6 +49,7 @@ pub struct AbilityListBuilder {
     abilities: AbilityList,
 }
 
+#[allow(unused)]
 impl AbilityListBuilder {
     pub fn new() -> Self {
         Self {
@@ -224,10 +225,12 @@ impl Character {
         0
     }
 
+    #[allow(unused)]
     pub fn damage_resistance(&self, dmg_type: DamageType) -> i32 {
         unimplemented!()
     }
 
+    #[allow(unused)]
     pub fn weapon_string(&self) -> String {
         format!(
             "{} ({} x{})",
@@ -247,6 +250,7 @@ pub struct CharacterBuilder {
     character: Character,
 }
 
+#[allow(unused)]
 impl CharacterBuilder {
     pub fn new() -> Self {
         Self {

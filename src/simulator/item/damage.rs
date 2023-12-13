@@ -2,6 +2,7 @@ use crate::simulator::dice::Dice;
 use std::{cell::RefCell, collections::HashMap};
 
 #[derive(Clone, Copy, Eq, PartialEq, Debug, Hash, Ord, PartialOrd)]
+#[allow(unused)]
 pub enum DamageType {
     Slashing,
     Piercing,
@@ -64,6 +65,7 @@ impl Damage {
         }
     }
 
+    #[allow(unused)]
     pub fn roll(&self) -> i32 {
         self.amount.roll()
     }
@@ -81,6 +83,7 @@ impl DamageResult {
         Self::default()
     }
 
+    #[allow(unused)]
     pub fn set(&self, type_: DamageType, amount: i32) {
         *self.0.borrow_mut().entry(type_).or_insert(0) += amount;
     }
