@@ -1,4 +1,4 @@
-use crate::simulator::dice::Dice;
+use crate::dice::Dice;
 use std::{cell::RefCell, collections::HashMap};
 
 #[derive(Clone, Copy, Eq, PartialEq, Debug, Hash, Ord, PartialOrd)]
@@ -99,7 +99,7 @@ impl DamageResult {
     pub fn get_types_sorted(&self) -> Vec<DamageType> {
         let mut types = self.get_types();
         types.sort();
-        
+
         types
     }
 
@@ -144,8 +144,8 @@ impl DamageResult {
 
 #[cfg(test)]
 mod test {
-    use crate::simulator::item::DamageType;
     use super::DamageResult;
+    use crate::item::DamageType;
 
     #[test]
     fn damage_result() {

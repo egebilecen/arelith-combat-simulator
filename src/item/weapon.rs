@@ -1,5 +1,5 @@
 use super::{get_keen_increase, DamageType, ItemProperty};
-use crate::simulator::{dice::Dice, size::SizeCategory};
+use crate::{dice::Dice, size::SizeCategory};
 
 #[derive(Clone, Default)]
 pub struct WeaponBase {
@@ -99,7 +99,7 @@ impl Weapon {
 
 #[cfg(test)]
 mod test {
-    use crate::simulator::{
+    use crate::{
         character::Character,
         dice::Dice,
         item::{weapon_db::get_weapon_base, DamageType, ItemProperty, Weapon, WeaponBase},

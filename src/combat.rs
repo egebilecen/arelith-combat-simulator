@@ -3,7 +3,7 @@ use super::{
     dice::Dice,
     item::{DamageResult, ItemProperty},
 };
-use crate::simulator::string::align_string;
+use crate::string::align_string;
 use std::cmp::max;
 
 #[derive(Debug, PartialEq)]
@@ -320,7 +320,7 @@ impl<'a> Combat<'a> {
 
 #[cfg(test)]
 mod test {
-    use crate::simulator::{
+    use crate::{
         character::{AbilityList, Character, CharacterBuilder},
         combat::{AttackInfo, AttackType, Combat},
         dice::Dice,

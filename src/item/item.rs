@@ -1,5 +1,5 @@
+use crate::dice::Dice;
 use super::Damage;
-use crate::simulator::dice::Dice;
 
 pub fn get_keen_increase(threat_range: i32) -> i32 {
     20 - threat_range + 1

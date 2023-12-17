@@ -1,12 +1,10 @@
-use crate::simulator::{character::Character, feat::feat_db::get_feat};
-use simulator::{
-    character::AbilityList,
+use arelith::{
+    character::{AbilityList, Character},
     dice::Dice,
+    feat::feat_db::get_feat,
     item::{weapon_db::get_weapon_base, Damage, DamageType, ItemProperty, Weapon},
     simulator::CombatSimulator,
 };
-
-mod simulator;
 
 fn main() {
     let attacker = Character::builder()

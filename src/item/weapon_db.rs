@@ -1,5 +1,5 @@
 use super::{DamageType, WeaponBase};
-use crate::simulator::{dice::Dice, size::SizeCategory};
+use crate::{dice::Dice, size::SizeCategory};
 use std::collections::HashMap;
 
 pub fn get_weapon_base_list() -> HashMap<String, WeaponBase> {

@@ -366,7 +366,7 @@ impl From<Character> for CharacterBuilder {
 
 #[cfg(test)]
 mod test {
-    use crate::simulator::{
+    use crate::{
         character::{AbilityList, Character, CharacterBuilder},
         dice::Dice,
         feat::feat_db::get_feat,

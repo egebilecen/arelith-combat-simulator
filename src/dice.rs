@@ -81,7 +81,7 @@ impl From<String> for Dice {
 
 #[cfg(test)]
 mod test {
-    use crate::simulator::dice::Dice;
+    use crate::dice::Dice;
 
     #[test]
     fn dice() {
