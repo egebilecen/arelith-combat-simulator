@@ -1,10 +1,10 @@
-use std::collections::HashMap;
-
 use super::{
     character::{Character, CharacterBuilder},
     combat::{Combat, CombatStatistics},
-    feat::feat_db::get_feat, string::align_string,
+    feat::feat_db::get_feat,
+    string::align_string,
 };
+use std::collections::HashMap;
 
 #[derive(Default, Debug)]
 pub struct DamageTestResult {
@@ -31,7 +31,10 @@ impl DamageTestResult {
         string_list.push("".into());
         string_list.push(target.to_string());
         string_list.push("".into());
-        string_list.push(align_string("AVERAGE DAMAGE PER ROUND", format!("{:.2}", target.dmg_dealt.total_dmg() / self.total_rounds)));
+        string_list.push(align_string(
+            "AVERAGE DAMAGE PER ROUND",
+            format!("{:.2}", target.dmg_dealt.total_dmg() / self.total_rounds),
+        ));
 
         string_list.join("\n")
     }
@@ -40,7 +43,7 @@ impl DamageTestResult {
 impl ToString for DamageTestResult {
     fn to_string(&self) -> String {
         let mut string_list: Vec<String> = vec![];
-        
+
         let mut ac_list = self.statistics.keys().collect::<Vec<&i32>>();
         ac_list.sort();
 

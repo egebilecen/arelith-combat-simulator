@@ -4,7 +4,7 @@ import rich
 from bs4 import BeautifulSoup
 
 URL = "https://wiki.nwnarelith.com/Weapons"
-OUTPUT_FILE_PATH = "./src/simulator/item/weapon_db.rs"
+OUTPUT_FILE_PATH = "./src/item/weapon_db.rs"
 TAB_SPACE = " " * 4
 
 def get_rust_code(weapon_name, size, damage, threat_range, crit_multiplier, damage_type_list):
@@ -52,7 +52,7 @@ with open(OUTPUT_FILE_PATH, "r+") as f:
 
 if file_gen_start_index is None \
 or file_gen_end_index is None:
-    print("[!] Failed to export weapons: ile_gen_start_index or file_gen_end_index is None")
+    print("[!] Failed to export weapons: file_gen_start_index or file_gen_end_index is None")
     sys.exit()
 
 file_lines = [elem for i, elem in enumerate(file_lines) if i <= file_gen_start_index or i >= file_gen_end_index]

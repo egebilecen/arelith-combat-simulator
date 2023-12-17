@@ -1,8 +1,8 @@
-mod item;
 mod damage;
+mod item;
 mod weapon;
 pub mod weapon_db;
 
-pub use item::*;
 pub use damage::*;
+pub use item::*;
 pub use weapon::*;
