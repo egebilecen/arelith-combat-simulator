@@ -1,7 +1,8 @@
 use super::{get_keen_increase, DamageType, ItemProperty};
 use crate::{dice::Dice, size::SizeCategory};
+use serde::Serialize;
 
-#[derive(Clone, Default)]
+#[derive(Clone, Default, Serialize)]
 pub struct WeaponBase {
     pub name: String,
     pub size: SizeCategory,
@@ -31,7 +32,7 @@ impl WeaponBase {
     }
 }
 
-#[derive(Default)]
+#[derive(Default, Serialize)]
 pub struct Weapon {
     pub name: String,
     pub base: WeaponBase,

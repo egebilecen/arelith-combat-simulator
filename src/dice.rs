@@ -1,4 +1,5 @@
 use rand::{thread_rng, Rng};
+use serde::Serialize;
 
 #[derive(Clone, PartialEq)]
 pub struct Dice {
@@ -76,6 +77,14 @@ impl From<&str> for Dice {
 impl From<String> for Dice {
     fn from(dice: String) -> Self {
         Dice::from(dice.as_str())
+    }
+}
+
+impl Serialize for Dice {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: serde::Serializer {
+        serializer.serialize_str(self.to_string().as_str())
     }
 }
 

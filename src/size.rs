@@ -1,4 +1,6 @@
-#[derive(Clone, PartialEq, PartialOrd)]
+use serde::Serialize;
+
+#[derive(Clone, PartialEq, PartialOrd, Serialize)]
 pub enum SizeCategory {
     Tiny,
     Small,

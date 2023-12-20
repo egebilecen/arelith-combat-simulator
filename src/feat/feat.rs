@@ -1,4 +1,6 @@
-#[derive(PartialEq, Debug, Clone)]
+use serde::Serialize;
+
+#[derive(PartialEq, Debug, Clone, Serialize)]
 pub struct Feat(pub &'static str);
 
 impl Feat {
