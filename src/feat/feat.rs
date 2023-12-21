@@ -1,10 +1,10 @@
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 
-#[derive(PartialEq, Debug, Clone, Serialize)]
-pub struct Feat(pub &'static str);
+#[derive(PartialEq, Debug, Clone, Serialize, Deserialize)]
+pub struct Feat(pub String);
 
 impl Feat {
-    fn name(&self) -> &str {
+    fn name(&self) -> &String {
         &self.0
     }
 }

@@ -4,10 +4,10 @@ use super::{
     item::{DamageResult, ItemProperty},
 };
 use crate::string::align_string;
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 use std::cmp::max;
 
-#[derive(Debug, PartialEq, Serialize)]
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[allow(unused)]
 pub enum HitResult {
     Hit,
@@ -34,7 +34,7 @@ impl HitResult {
     }
 }
 
-#[derive(Debug, PartialEq, Clone, Copy, Serialize)]
+#[derive(Debug, PartialEq, Clone, Copy, Serialize, Deserialize)]
 pub enum AttackType {
     MainHand,
     OffHand,
@@ -55,7 +55,7 @@ impl std::fmt::Display for AttackType {
     }
 }
 
-#[derive(Debug, PartialEq, Serialize)]
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct AttackInfo {
     pub ab: i32,
     pub type_: AttackType,
@@ -67,7 +67,7 @@ impl AttackInfo {
     }
 }
 
-#[derive(Default, Debug, Serialize)]
+#[derive(Default, Debug, Serialize, Deserialize)]
 pub struct CombatStatistics {
     pub total_hits: i64,
     pub critical_hits: i64,

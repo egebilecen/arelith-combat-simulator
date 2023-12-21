@@ -5,9 +5,9 @@ use super::{
     rules::CONSECUTIVE_ATTACK_AB_PENALTY,
     size::SizeCategory,
 };
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct AbilityScore(i32);
 
 impl AbilityScore {
@@ -30,7 +30,7 @@ impl From<i32> for AbilityScore {
     }
 }
 
-#[derive(Default, Debug, Serialize)]
+#[derive(Default, Debug, Serialize, Deserialize)]
 pub struct AbilityList {
     pub str: AbilityScore,
     pub dex: AbilityScore,
@@ -93,7 +93,7 @@ impl AbilityListBuilder {
     }
 }
 
-#[derive(Default, Serialize)]
+#[derive(Default, Serialize, Deserialize)]
 pub struct Character {
     pub name: String,
     pub size: SizeCategory,

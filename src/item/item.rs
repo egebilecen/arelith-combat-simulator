@@ -1,12 +1,12 @@
 use super::Damage;
 use crate::dice::Dice;
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 
 pub fn get_keen_increase(threat_range: i32) -> i32 {
     20 - threat_range + 1
 }
 
-#[derive(PartialEq, Serialize)]
+#[derive(PartialEq, Serialize, Deserialize)]
 #[allow(unused)]
 pub enum ItemProperty {
     AttackBonus(i32),      // Not implemented, it won't increase the character's AB.

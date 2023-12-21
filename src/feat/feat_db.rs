@@ -19,7 +19,7 @@ pub fn get_feat_list() -> HashMap<&'static str, Feat> {
     let mut hashmap = HashMap::new();
 
     for feat_str in FEAT_LIST {
-        hashmap.insert(*feat_str, Feat(feat_str));
+        hashmap.insert(*feat_str, Feat(feat_str.to_string()));
     }
 
     hashmap

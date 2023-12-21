@@ -4,10 +4,10 @@ use super::{
     feat::feat_db::get_feat,
     string::align_string,
 };
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 
-#[derive(Default, Debug, Serialize)]
+#[derive(Default, Debug, Serialize, Deserialize)]
 pub struct DamageTestResult {
     total_rounds: i32,
     statistics: HashMap<i32, CombatStatistics>,

@@ -1,8 +1,8 @@
 use crate::dice::Dice;
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 use std::{cell::RefCell, collections::HashMap};
 
-#[derive(Clone, Copy, Eq, PartialEq, Debug, Hash, Ord, PartialOrd, Serialize)]
+#[derive(Clone, Copy, Eq, PartialEq, Debug, Hash, Ord, PartialOrd, Serialize, Deserialize)]
 #[allow(unused)]
 pub enum DamageType {
     Slashing,
@@ -42,7 +42,7 @@ impl std::fmt::Display for DamageType {
     }
 }
 
-#[derive(PartialEq, Serialize)]
+#[derive(PartialEq, Serialize, Deserialize)]
 pub struct Damage {
     amount: Dice,
     pub type_: DamageType,
@@ -76,7 +76,7 @@ impl Damage {
     }
 }
 
-#[derive(Default, Debug, Serialize)]
+#[derive(Default, Debug, Serialize, Deserialize)]
 pub struct DamageResult(RefCell<HashMap<DamageType, i32>>);
 
 impl DamageResult {
