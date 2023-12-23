@@ -139,6 +139,10 @@ impl Character {
         self.has_feat(get_feat("Bane of Enemies"))
     }
 
+    pub fn has_overwhelming_critical(&self) -> bool {
+        self.has_feat(get_feat("Overwhelming Critical"))
+    }
+
     pub fn has_weapon_spec(&self) -> bool {
         self.has_feat(get_feat("Weapon Specialization"))
     }
@@ -535,6 +539,9 @@ mod test {
                 get_feat("Dual Wielding"),
                 get_feat("Critical Immunity"),
                 get_feat("Increased Multiplier"),
+                get_feat("Overwhelming Critical"),
+                get_feat("Bane of Enemies"),
+                get_feat("Epic Dodge")
             ])
             .build();
 
@@ -543,5 +550,8 @@ mod test {
         assert_eq!(character.total_apr(), 8);
         assert_eq!(character.is_weapon_twohanded(), true);
         assert_eq!(character.weapon_crit_multiplier(), 3);
+        assert_eq!(character.has_overwhelming_critical(), true);
+        assert_eq!(character.has_bane_of_enemies(), true);
+        assert_eq!(character.has_epic_dodge(), true);
     }
 }

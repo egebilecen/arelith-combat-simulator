@@ -224,6 +224,11 @@ impl<'a> Combat<'a> {
             dmg_result.add(weapon_base_dmg_type, Dice::from("2d6").roll_m(multiplier));
         }
 
+        // Overwhelming Critical
+        if attacker.has_overwhelming_critical() {
+            dmg_result.add(weapon_base_dmg_type, Dice::from("1d6").roll_m(multiplier));
+        }
+
         // Weapon Specialization
         if attacker.has_weapon_spec() {
             dmg_result.add(weapon_base_dmg_type, 2 * multiplier);
