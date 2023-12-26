@@ -1,10 +1,10 @@
 use super::{
-    character::{Character, CharacterBuilder},
+    character::Character,
     combat::{Combat, CombatStatistics},
     feat::feat_db::get_feat,
     string::align_string,
 };
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 #[derive(Default, Debug, Serialize, Deserialize)]
@@ -94,12 +94,20 @@ impl CombatSimulator {
         &self,
         attacker: &Character,
         target_ac_list: Vec<i32>,
+        target_concealment: i32,
+        target_physical_immunity: i32,
+        target_defensive_essence: i32,
         target_has_epic_dodge: bool,
     ) -> DamageTestResult {
         let mut result = DamageTestResult::new();
 
         for target_ac in target_ac_list {
-            let mut dummy = CharacterBuilder::standard_dummy(target_ac);
+            let mut dummy = Character::builder()
+                .name("Combat Dummy".into())
+                .ac(target_ac)
+                .concealment(target_concealment)
+                .physical_immunity(target_physical_immunity)
+                .defensive_essence(target_defensive_essence);
 
             if target_has_epic_dodge {
                 dummy = dummy.add_feat(get_feat("Epic Dodge"));

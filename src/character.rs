@@ -279,15 +279,6 @@ impl CharacterBuilder {
         }
     }
 
-    pub fn standard_dummy(ac: i32) -> Self {
-        Self::new()
-            .name("Standard Dummy".into())
-            .ac(ac)
-            .concealment(50)
-            .physical_immunity(10)
-            .defensive_essence(5)
-    }
-
     pub fn name(mut self, name: String) -> Self {
         self.character.name = name;
         self
