@@ -1,5 +1,5 @@
 use crate::dice::Dice;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 use std::{cell::RefCell, collections::HashMap};
 
 #[derive(Clone, Copy, Eq, PartialEq, Debug, Hash, Ord, PartialOrd, Serialize, Deserialize)]
@@ -21,6 +21,7 @@ pub enum DamageType {
     Force,
     Psychic,
     Poison,
+    Unknown,
 }
 
 impl DamageType {
@@ -32,6 +33,30 @@ impl DamageType {
         match self {
             Self::Slashing | Self::Piercing | Self::Bludgeoning => true,
             _ => false,
+        }
+    }
+}
+
+impl From<&str> for DamageType {
+    fn from(value: &str) -> Self {
+        match value.to_lowercase().as_str() {
+            "slashing" => Self::Slashing,
+            "piercing" => Self::Piercing,
+            "bludgeoning" => Self::Bludgeoning,
+            "magical" => Self::Magical,
+            "acid" => Self::Acid,
+            "cold" => Self::Cold,
+            "divine" => Self::Divine,
+            "electrical" => Self::Electrical,
+            "fire" => Self::Fire,
+            "negative" => Self::Negative,
+            "positive" => Self::Positive,
+            "sonic" => Self::Sonic,
+            "entropy" => Self::Entropy,
+            "force" => Self::Force,
+            "psychic" => Self::Psychic,
+            "poison" => Self::Poison,
+            _ => Self::Unknown,
         }
     }
 }
