@@ -5,7 +5,9 @@ use super::{
     string::align_string,
 };
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
+use std::{cell::Cell, collections::HashMap};
+
+type CombatCallbackFn = dyn Fn(&i32, &CombatStatistics) -> ();
 
 #[derive(Default, Debug, Serialize, Deserialize)]
 pub struct DamageTestResult {
@@ -65,11 +67,15 @@ impl ToString for DamageTestResult {
 #[derive(Default)]
 pub struct CombatSimulator {
     total_rounds: i32,
+    damage_test_notifier: Cell<Option<&'static CombatCallbackFn>>,
 }
 
 impl CombatSimulator {
     pub fn new(total_rounds: i32) -> Self {
-        Self { total_rounds }
+        Self {
+            total_rounds,
+            damage_test_notifier: Cell::new(None),
+        }
     }
 
     pub fn begin(&self, attacker: &Character, defender: &Character) -> CombatStatistics {
@@ -114,12 +120,20 @@ impl CombatSimulator {
             }
 
             let dummy = dummy.build();
-            let round_statistics = self.begin(attacker, &dummy);
+            let combat_statistics = self.begin(attacker, &dummy);
 
-            result.statistics.insert(target_ac, round_statistics);
+            if let Some(f) = self.damage_test_notifier.get() {
+                f(&target_ac, &combat_statistics);
+            }
+
+            result.statistics.insert(target_ac, combat_statistics);
         }
 
         result.total_rounds = self.total_rounds;
         result
+    }
+
+    pub fn set_damage_test_notifier(&self, f: &'static CombatCallbackFn) {
+        self.damage_test_notifier.set(Some(f));
     }
 }
