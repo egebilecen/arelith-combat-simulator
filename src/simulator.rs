@@ -65,12 +65,12 @@ impl ToString for DamageTestResult {
 }
 
 #[derive(Default)]
-pub struct CombatSimulator {
+pub struct CombatSimulator<'a> {
     total_rounds: i32,
-    damage_test_notifier: Cell<Option<&'static CombatCallbackFn>>,
+    damage_test_notifier: Cell<Option<&'a CombatCallbackFn>>,
 }
 
-impl CombatSimulator {
+impl<'a> CombatSimulator<'a> {
     pub fn new(total_rounds: i32) -> Self {
         Self {
             total_rounds,
@@ -133,7 +133,7 @@ impl CombatSimulator {
         result
     }
 
-    pub fn set_damage_test_notifier(&self, f: &'static CombatCallbackFn) {
+    pub fn set_damage_test_notifier(&self, f: &'a CombatCallbackFn) {
         self.damage_test_notifier.set(Some(f));
     }
 }
