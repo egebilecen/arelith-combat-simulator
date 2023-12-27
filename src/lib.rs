@@ -7,3 +7,5 @@ mod rules;
 pub mod simulator;
 pub mod size;
 mod string;
+
+pub use combat::{AttackInfo, AttackType, CombatStatistics, HitResult};
