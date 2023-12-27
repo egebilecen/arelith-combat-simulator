@@ -7,9 +7,9 @@ use super::{
 use serde::{Deserialize, Serialize};
 use std::{cell::Cell, collections::HashMap};
 
-type CombatCallbackFn = dyn Fn(&i32, &CombatStatistics) -> ();
+type CombatCallbackFn = dyn Fn(&Character, &i32, &CombatStatistics) -> ();
 
-#[derive(Default, Debug, Serialize, Deserialize)]
+#[derive(Clone, Default, Debug, Serialize, Deserialize)]
 pub struct DamageTestResult {
     total_rounds: i32,
     statistics: HashMap<i32, CombatStatistics>,
@@ -123,7 +123,7 @@ impl<'a> CombatSimulator<'a> {
             let combat_statistics = self.begin(attacker, &dummy);
 
             if let Some(f) = self.damage_test_notifier.get() {
-                f(&target_ac, &combat_statistics);
+                f(&attacker, &target_ac, &combat_statistics);
             }
 
             result.statistics.insert(target_ac, combat_statistics);

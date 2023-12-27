@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "arelith_combat_simulator"
-version = "1.4.3"
+version = "1.4.4"
 dependencies = [
  "rand",
  "serde",
