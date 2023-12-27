@@ -67,7 +67,7 @@ impl AttackInfo {
     }
 }
 
-#[derive(Default, Debug, Serialize, Deserialize)]
+#[derive(Clone, Default, Debug, Serialize, Deserialize)]
 pub struct CombatStatistics {
     pub total_hits: i64,
     pub critical_hits: i64,

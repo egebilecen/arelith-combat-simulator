@@ -101,7 +101,7 @@ impl Damage {
     }
 }
 
-#[derive(Default, Debug, Serialize, Deserialize)]
+#[derive(Clone, Default, Debug, Serialize, Deserialize)]
 pub struct DamageResult(RefCell<HashMap<DamageType, i32>>);
 
 impl DamageResult {
