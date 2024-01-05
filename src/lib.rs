@@ -1,3 +1,5 @@
+extern crate self as arelith;
+
 pub mod character;
 mod combat;
 pub mod dice;
