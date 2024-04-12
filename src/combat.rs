@@ -401,6 +401,41 @@ mod test {
         );
         assert_eq!(character2.atk_ab(8), None);
 
+        let monk_character = CharacterBuilder::from(character2)
+            .ab(48)
+            .feats(vec![get_feat("Dual Wielding"), get_feat("Monk")])
+            .build();
+
+        assert_eq!(
+            monk_character.atk_ab(1).unwrap(),
+            AttackInfo::new(48, AttackType::MainHand)
+        );
+        assert_eq!(
+            monk_character.atk_ab(2).unwrap(),
+            AttackInfo::new(45, AttackType::MainHand)
+        );
+        assert_eq!(
+            monk_character.atk_ab(3).unwrap(),
+            AttackInfo::new(42, AttackType::MainHand)
+        );
+        assert_eq!(
+            monk_character.atk_ab(4).unwrap(),
+            AttackInfo::new(39, AttackType::MainHand)
+        );
+        assert_eq!(
+            monk_character.atk_ab(5).unwrap(),
+            AttackInfo::new(50, AttackType::Extra)
+        );
+        assert_eq!(
+            monk_character.atk_ab(6).unwrap(),
+            AttackInfo::new(48, AttackType::OffHand)
+        );
+        assert_eq!(
+            monk_character.atk_ab(7).unwrap(),
+            AttackInfo::new(45, AttackType::OffHand)
+        );
+        assert_eq!(monk_character.atk_ab(8), None);
+
         let attacker = Character::builder()
             .ab(50)
             .feats(vec![get_feat("Blind Fight")])

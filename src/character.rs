@@ -2,10 +2,10 @@ use super::{
     combat::{AttackInfo, AttackType},
     feat::{feat_db::get_feat, Feat},
     item::{get_keen_increase, DamageType, Weapon},
-    rules::CONSECUTIVE_ATTACK_AB_PENALTY,
+    rules::{CONSECUTIVE_ATTACK_AB_PENALTY, MONK_CONSECUTIVE_ATTACK_AB_PENALTY},
     size::SizeCategory,
 };
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AbilityScore(i32);
@@ -159,21 +159,31 @@ impl Character {
         self.has_feat(get_feat("Critical Immunity"))
     }
 
+    pub fn is_monk(&self) -> bool {
+        self.has_feat(get_feat("Monk"))
+    }
+
     pub fn atk_ab(&self, atk_no: i32) -> Option<AttackInfo> {
         if atk_no < 1 || atk_no > self.total_apr() {
             return None;
         }
 
+        let consecutive_attack_ab_penalty = if self.is_monk() {
+            MONK_CONSECUTIVE_ATTACK_AB_PENALTY
+        } else {
+            CONSECUTIVE_ATTACK_AB_PENALTY
+        };
+
         if atk_no <= self.base_apr {
             return Some(AttackInfo::new(
-                self.ab - (CONSECUTIVE_ATTACK_AB_PENALTY * (atk_no - 1)),
+                self.ab - (consecutive_attack_ab_penalty * (atk_no - 1)),
                 AttackType::MainHand,
             ));
         }
 
         if self.extra_apr > 0 && atk_no <= self.base_apr + self.extra_apr {
             let extra_atk_no = atk_no - self.base_apr;
-            let extra_atk_ab = self.ab - ((extra_atk_no - 1) * CONSECUTIVE_ATTACK_AB_PENALTY)
+            let extra_atk_ab = self.ab - ((extra_atk_no - 1) * consecutive_attack_ab_penalty)
                 + if self.is_dual_wielding() { 2 } else { 0 };
 
             return Some(AttackInfo::new(extra_atk_ab, AttackType::Extra));
@@ -183,7 +193,7 @@ impl Character {
             let dw_atk_no = atk_no - self.total_apr() + 2;
 
             return Some(AttackInfo::new(
-                self.ab - ((dw_atk_no - 1) * CONSECUTIVE_ATTACK_AB_PENALTY),
+                self.ab - ((dw_atk_no - 1) * consecutive_attack_ab_penalty),
                 AttackType::OffHand,
             ));
         }
@@ -532,7 +542,7 @@ mod test {
                 get_feat("Increased Multiplier"),
                 get_feat("Overwhelming Critical"),
                 get_feat("Bane of Enemies"),
-                get_feat("Epic Dodge")
+                get_feat("Epic Dodge"),
             ])
             .build();
 

@@ -13,6 +13,7 @@ const FEAT_LIST: &'static [&'static str] = &[
     "Ki Critical",
     "Weapon Specialization",
     "Epic Weapon Specialization",
+    "Monk",
 ];
 
 pub fn get_feat_list() -> HashMap<&'static str, Feat> {
