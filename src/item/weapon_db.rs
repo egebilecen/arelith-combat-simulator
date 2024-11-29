@@ -105,6 +105,28 @@ pub fn get_weapon_base_list() -> HashMap<String, WeaponBase> {
             ),
         ),
         (
+            "Yari".into(),
+            WeaponBase::new(
+                "Yari".into(),
+                SizeCategory::Medium,
+                Dice::from("1d10"),
+                20,
+                3,
+                vec![DamageType::Piercing],
+            ),
+        ),
+        (
+            "Billhook".into(),
+            WeaponBase::new(
+                "Billhook".into(),
+                SizeCategory::Medium,
+                Dice::from("1d8"),
+                20,
+                3,
+                vec![DamageType::Slashing],
+            ),
+        ),
+        (
             "Naginata".into(),
             WeaponBase::new(
                 "Naginata".into(),
@@ -190,6 +212,28 @@ pub fn get_weapon_base_list() -> HashMap<String, WeaponBase> {
                 20,
                 3,
                 vec![DamageType::Slashing, DamageType::Piercing],
+            ),
+        ),
+        (
+            "Hookhammer".into(),
+            WeaponBase::new(
+                "Hookhammer".into(),
+                SizeCategory::Medium,
+                Dice::from("1d8"),
+                20,
+                3,
+                vec![],
+            ),
+        ),
+        (
+            "Cane".into(),
+            WeaponBase::new(
+                "Cane".into(),
+                SizeCategory::Medium,
+                Dice::from("1d4"),
+                19,
+                2,
+                vec![DamageType::Bludgeoning],
             ),
         ),
         (

@@ -61,6 +61,7 @@ impl From<i32> for Dice {
 
 impl From<&str> for Dice {
     fn from(dice: &str) -> Self {
+        // TODO: Add support for "d20" instead of "1d20".
         let dice_split: Vec<&str> = dice.split("d").collect();
 
         if dice_split.len() != 2 {
